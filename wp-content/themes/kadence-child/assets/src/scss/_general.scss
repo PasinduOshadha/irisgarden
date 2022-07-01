@@ -1,0 +1,10 @@
+body{
+    color: $primary-color;
+}
+
+.zb-menu a{
+    color: $primary-color;
+    &:hover{
+        color:red !important;
+    }
+}

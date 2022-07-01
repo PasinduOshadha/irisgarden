@@ -1,1 +1,1 @@
-{"version":3,"sources":[],"names":[],"mappings":"","file":"style.css"}
+{"version":3,"sources":["_general.scss","style.css"],"names":[],"mappings":"AAIA,gBACI,aCCJ,CDAI,iBACI,mBCER","file":"style.css","sourcesContent":["body{\n    color: $primary-color;\n}\n\n.zb-menu a{\n    color: $primary-color;\n    &:hover{\n        color:red !important;\n    }\n}","body {\n  color: #2A2940;\n}\n\n.zb-menu a {\n  color: #2A2940;\n}\n.zb-menu a:hover {\n  color: red !important;\n}"]}
