@@ -1,107 +1,72 @@
-const gulp = require( 'gulp' ),
-	fancylog = require( 'fancy-log' ),
-	browserSync = require( 'browser-sync' ),
-	server = browserSync.create(),
-	dev_url = 'http://localhost/starter-bootstrap';
+const { src, dest, watch, series } = require('gulp')
+const sass = require('gulp-sass')(require('sass')); // This is different from the video since gulp-sass no longer includes a default compiler. Install sass as a dev dependency `npm i -D sass` and change this line from the video.
+const prefix = require('autoprefixer');
+const minify = require('gulp-clean-css');
+const terser = require('gulp-terser');
 
+const imagewebp = require('gulp-webp');
+const postcss = require('gulp-postcss');
 
-/**
- * Define all source paths
- */
-
-var paths = {
-	styles: {
-		src: './assets/*.scss',
-		dest: './assets/css'
+const filesPath = {
+	scss: {
+		src: './assets/src/scss/',
+		dist: './assets/dist/css/',
 	},
-	scripts: {
-		src: './assets/*.js',
-		dest: './assets/js'
+	js: {
+		src: './assets/src/js/',
+		dist: './assets/dist/js/',		
 	}
+}
+
+//compile, prefix, and min scss
+function compilescss() {
+  return src(filesPath.scss.src + '*.scss') // change to your source directory
+    .pipe(sass())
+	.pipe(postcss([
+		prefix({})
+	]))
+    // .pipe(prefix('last 2 versions'))
+    .pipe(minify())
+    .pipe(dest(filesPath.scss.dist)) // change to your final/public directory
 };
 
-
-/**
- * Webpack compilation: http://webpack.js.org, https://github.com/shama/webpack-stream#usage-with-gulp-watch
- * 
- * build_js()
- */
-
-function build_js() {
-	const compiler = require( 'webpack' ),
-		webpackStream = require( 'webpack-stream' );
-
-	return gulp.src( paths.scripts.src )
-		.pipe(
-			webpackStream( {
-				config: require( './webpack.config.js' )
-			},
-				compiler
-			)
-		)
-		.pipe(
-			gulp.dest( paths.scripts.dest )
-		)
-		/*.pipe(
-			server.stream() // Browser Reload
-		)*/;
+// minify js
+function jsmin(){
+  return src(filesPath.js.src + '*.js') // change to your source directory
+    .pipe(terser())
+    .pipe(dest(filesPath.js.dist)); // change to your final/public directory
 }
 
+//optimize and move images
+function optimizeimg() {
+  return src('src/images/*.{jpg,png}') // change to your source directory
+    .pipe(imagemin([
+      imagemin.mozjpeg({ quality: 80, progressive: true }),
+      imagemin.optipng({ optimizationLevel: 2 }),
+    ]))
+    .pipe(dest('dist/images')) // change to your final/public directory
+};
 
-/**
- * SASS-CSS compilation: https://www.npmjs.com/package/gulp-sass
- * 
- * build_css()
- */
+//optimize and move images
+function webpImage() {
+  return src('dist/images/*.{jpg,png}') // change to your source directory
+    .pipe(imagewebp())
+    .pipe(dest('dist/images')) // change to your final/public directory
+};
 
-function build_css() {
-	const sass = require( 'gulp-sass' )( require( 'sass' ) ),
-		postcss = require( 'gulp-postcss' ),
-		sourcemaps = require( 'gulp-sourcemaps' ),
-		autoprefixer = require( 'autoprefixer' ),
-		cssnano = require( 'cssnano' );
-
-	const plugins = [
-		autoprefixer(),
-		cssnano(),
-	];
-
-	return gulp.src( paths.styles.src )
-		.pipe(
-			sourcemaps.init()
-		)
-		.pipe(
-			sass()
-				.on( 'error', sass.logError )
-		)
-		.pipe(
-			postcss( plugins )
-		)
-		.pipe(
-			sourcemaps.write( './' )
-		)
-		.pipe(
-			gulp.dest( paths.styles.dest )
-		)
-		/*.pipe(
-			server.stream() // Browser Reload
-		)*/;
+//watchtask
+function watchTask(){
+  watch(filesPath.scss.src + '*.scss', compilescss); // change to your source directory
+  watch(filesPath.js.src + '*.js', jsmin); // change to your source directory
+  // watch('src/images/*', optimizeimg); // change to your source directory
+  // watch('dist/images/*.{jpg,png}', webpImage); // change to your source directory
 }
 
-/**
- * Watch task: Webpack + SASS
- * 
- * $ gulp watch
- */
-
-gulp.task( 'watch',
-	function () {
-		// Modify "dev_url" constant and uncomment "server.init()" to use browser sync
-		/*server.init({
-			proxy: dev_url,
-		} );*/
-
-		gulp.watch( paths.scripts.src, build_js );
-		gulp.watch( [ paths.styles.src, './assets/scss/*.scss' ], build_css );
-	}
+// Default Gulp task 
+exports.default = series(
+  compilescss,
+  jsmin,
+  // optimizeimg,
+  // webpImage,
+  watchTask
 );
