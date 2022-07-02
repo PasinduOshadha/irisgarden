@@ -1,63 +1,107 @@
-const { src, dest, watch, series } = require('gulp')
-const sass = require('gulp-sass')(require('sass')); // This is different from the video since gulp-sass no longer includes a default compiler. Install sass as a dev dependency `npm i -D sass` and change this line from the video.
-const autoprefixer = require('autoprefixer');
-const minify = require('gulp-clean-css');
-const terser = require('gulp-terser');
-const postcss = require('gulp-postcss');
-const concat = require('gulp-concat');
-const sourcemaps = require('gulp-sourcemaps');
-const tailwindcss = require('tailwindcss')
-const imagewebp = require('gulp-webp');
-
-// file paths
-const files = {
-    scssPath: 'assets/src/sass/**/*.scss',
-    jsPath: 'assets/src/js/**/*.js',
-    dist: 'assets/dist/'
-}
+const gulp = require( 'gulp' ),
+	fancylog = require( 'fancy-log' ),
+	browserSync = require( 'browser-sync' ),
+	server = browserSync.create(),
+	dev_url = 'http://localhost/starter-bootstrap';
 
 
-//compile, prefix, and min scss
-function compilescss() {
-  return src(files.scssPath) // change to your source directory
-    .pipe(sass())
-    .pipe(postcss([
-    //   require('tailwindcss'),
-      autoprefixer({})
-    ]))
-    .pipe(minify())
-    .pipe(concat('style.css'))
-    .pipe(sourcemaps.write('.'))
-    .pipe(dest(files.dist + 'css')) // change to your final/public directory
+/**
+ * Define all source paths
+ */
+
+var paths = {
+	styles: {
+		src: './assets/*.scss',
+		dest: './assets/css'
+	},
+	scripts: {
+		src: './assets/*.js',
+		dest: './assets/js'
+	}
 };
 
-// minify js
-function jsmin(){
-  return src(files.jsPath) // change to your source directory
-    .pipe(concat('iris-garden-bundle.js'))
-    .pipe(terser())
-    .pipe(dest(files.dist + 'js')); // change to your final/public directory
+
+/**
+ * Webpack compilation: http://webpack.js.org, https://github.com/shama/webpack-stream#usage-with-gulp-watch
+ * 
+ * build_js()
+ */
+
+function build_js() {
+	const compiler = require( 'webpack' ),
+		webpackStream = require( 'webpack-stream' );
+
+	return gulp.src( paths.scripts.src )
+		.pipe(
+			webpackStream( {
+				config: require( './webpack.config.js' )
+			},
+				compiler
+			)
+		)
+		.pipe(
+			gulp.dest( paths.scripts.dest )
+		)
+		/*.pipe(
+			server.stream() // Browser Reload
+		)*/;
 }
 
 
-//optimize and move images
-function webpImage() {
-  return src(files.dist + 'images/*.{jpg,png}') // change to your source directory
-    .pipe(imagewebp())
-    .pipe(dest(files.dist + 'images')) // change to your final/public directory
-};
+/**
+ * SASS-CSS compilation: https://www.npmjs.com/package/gulp-sass
+ * 
+ * build_css()
+ */
 
-//watchtask
-function watchTask(){
-  watch(files.scssPath, compilescss); // change to your source directory
-  watch(files.jsPath, jsmin); // change to your source directory
-  watch(files.dist + 'images/*.{jpg,png}', webpImage); // change to your source directory
+function build_css() {
+	const sass = require( 'gulp-sass' )( require( 'sass' ) ),
+		postcss = require( 'gulp-postcss' ),
+		sourcemaps = require( 'gulp-sourcemaps' ),
+		autoprefixer = require( 'autoprefixer' ),
+		cssnano = require( 'cssnano' );
+
+	const plugins = [
+		autoprefixer(),
+		cssnano(),
+	];
+
+	return gulp.src( paths.styles.src )
+		.pipe(
+			sourcemaps.init()
+		)
+		.pipe(
+			sass()
+				.on( 'error', sass.logError )
+		)
+		.pipe(
+			postcss( plugins )
+		)
+		.pipe(
+			sourcemaps.write( './' )
+		)
+		.pipe(
+			gulp.dest( paths.styles.dest )
+		)
+		/*.pipe(
+			server.stream() // Browser Reload
+		)*/;
 }
 
-// Default Gulp task 
-exports.default = series(
-  compilescss,
-  jsmin,
-  webpImage,
-  watchTask,
+/**
+ * Watch task: Webpack + SASS
+ * 
+ * $ gulp watch
+ */
+
+gulp.task( 'watch',
+	function () {
+		// Modify "dev_url" constant and uncomment "server.init()" to use browser sync
+		/*server.init({
+			proxy: dev_url,
+		} );*/
+
+		gulp.watch( paths.scripts.src, build_js );
+		gulp.watch( [ paths.styles.src, './assets/scss/*.scss' ], build_css );
+	}
 );

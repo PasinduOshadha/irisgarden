@@ -1,53 +1,30 @@
 <?php
 /**
- * The template for displaying search results pages
- *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/#search-result
- *
- * @package Iris_Garden
+ * The Template for displaying Search Results pages.
  */
 
 get_header();
-?>
 
-	<main id="primary" class="site-main">
-
-		<?php if ( have_posts() ) : ?>
-
-			<header class="page-header">
-				<h1 class="page-title">
-					<?php
-					/* translators: %s: search query. */
-					printf( esc_html__( 'Search Results for: %s', 'iris-garden' ), '<span>' . get_search_query() . '</span>' );
-					?>
-				</h1>
-			</header><!-- .page-header -->
-
-			<?php
-			/* Start the Loop */
-			while ( have_posts() ) :
-				the_post();
-
-				/**
-				 * Run the loop for the search to output the results.
-				 * If you want to overload this in a child theme then include a file
-				 * called content-search.php and that will be used instead.
-				 */
-				get_template_part( 'template-parts/content', 'search' );
-
-			endwhile;
-
-			the_posts_navigation();
-
-		else :
-
-			get_template_part( 'template-parts/content', 'none' );
-
-		endif;
-		?>
-
-	</main><!-- #main -->
-
+if ( have_posts() ) :
+?>	
+	<header class="page-header">
+		<h1 class="page-title"><?php printf( esc_html__( 'Search Results for: %s', 'iris-garden' ), get_search_query() ); ?></h1>
+	</header>
 <?php
-get_sidebar();
+	get_template_part( 'archive', 'loop' );
+else :
+?>
+	<article id="post-0" class="post no-results not-found">
+		<header class="entry-header">
+			<h1 class="entry-title"><?php esc_html_e( 'Nothing Found', 'iris-garden' ); ?></h1>
+		</header><!-- /.entry-header -->
+		<p><?php esc_html_e( 'Sorry, but nothing matched your search criteria. Please try again with some different keywords.', 'iris-garden' ); ?></p>
+		<?php
+			get_search_form();
+		?>
+	</article><!-- /#post-0 -->
+<?php
+endif;
+wp_reset_postdata();
+
 get_footer();

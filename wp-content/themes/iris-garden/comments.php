@@ -1,16 +1,9 @@
 <?php
 /**
- * The template for displaying comments
- *
- * This is the template that displays the area of the page that contains both the current comments
- * and the comment form.
- *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
- *
- * @package Iris_Garden
+ * The template for displaying Comments.
  */
 
-/*
+/**
  * If the current post is protected by a password and
  * the visitor has not yet entered the password we will
  * return early without loading the comments.
@@ -19,59 +12,86 @@ if ( post_password_required() ) {
 	return;
 }
 ?>
-
-<div id="comments" class="comments-area">
-
+<div id="comments">
 	<?php
-	// You can start editing here -- including this comment!
-	if ( have_comments() ) :
-		?>
-		<h2 class="comments-title">
+		if ( comments_open() && ! have_comments() ) :
+	?>
+		<h2 id="comments-title">
 			<?php
-			$iris_garden_comment_count = get_comments_number();
-			if ( '1' === $iris_garden_comment_count ) {
-				printf(
-					/* translators: 1: title. */
-					esc_html__( 'One thought on &ldquo;%1$s&rdquo;', 'iris-garden' ),
-					'<span>' . wp_kses_post( get_the_title() ) . '</span>'
-				);
-			} else {
-				printf( 
-					/* translators: 1: comment count number, 2: title. */
-					esc_html( _nx( '%1$s thought on &ldquo;%2$s&rdquo;', '%1$s thoughts on &ldquo;%2$s&rdquo;', $iris_garden_comment_count, 'comments title', 'iris-garden' ) ),
-					number_format_i18n( $iris_garden_comment_count ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-					'<span>' . wp_kses_post( get_the_title() ) . '</span>'
-				);
-			}
+				esc_html_e( 'No Comments yet!', 'iris-garden' );
 			?>
-		</h2><!-- .comments-title -->
-
-		<?php the_comments_navigation(); ?>
-
-		<ol class="comment-list">
-			<?php
-			wp_list_comments(
-				array(
-					'style'      => 'ol',
-					'short_ping' => true,
-				)
-			);
-			?>
-		</ol><!-- .comment-list -->
-
-		<?php
-		the_comments_navigation();
-
-		// If comments are closed and there are comments, let's leave a little note, shall we?
-		if ( ! comments_open() ) :
-			?>
-			<p class="no-comments"><?php esc_html_e( 'Comments are closed.', 'iris-garden' ); ?></p>
-			<?php
+		</h2>
+	<?php
 		endif;
 
-	endif; // Check for have_comments().
-
-	comment_form();
+		if ( have_comments() ) :
 	?>
+		<h2 id="comments-title">
+			<?php
+				$comments_number = get_comments_number();
+				if ( '1' === $comments_number ) {
+					printf( _x( 'One Reply to &ldquo;%s&rdquo;', 'comments title', 'iris-garden' ), get_the_title() );
+				} else {
+					printf(
+						/* translators: 1: number of comments, 2: post title */
+						_nx(
+							'%1$s Reply to &ldquo;%2$s&rdquo;',
+							'%1$s Replies to &ldquo;%2$s&rdquo;',
+							$comments_number,
+							'comments title',
+							'iris-garden'
+						),
+						number_format_i18n( $comments_number ),
+						get_the_title()
+					);
+				}
+			?>
+		</h2>
+		<?php
+			if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) :
+		?>
+		<nav id="comment-nav-above">
+			<h1 class="assistive-text"><?php esc_html_e( 'Comment navigation', 'iris-garden' ); ?></h1>
+			<div class="nav-previous"><?php previous_comments_link( __( '&larr; Older Comments', 'iris-garden' ) ); ?></div>
+			<div class="nav-next"><?php next_comments_link( __( 'Newer Comments &rarr;', 'iris-garden' ) ); ?></div>
+		</nav>
+		<?php
+			endif;
+		?>
+		<ol class="commentlist">
+			<?php
+				/**
+				 * Loop through and list the comments. Tell wp_list_comments()
+				 * to use theme_comment() to format the comments.
+				 * If you want to overload this in a child theme then you can
+				 * define theme_comment() and that will be used instead.
+				 * See theme_comment() in my-theme/functions.php for more.
+				 */
+				wp_list_comments( array( 'callback' => 'iris_garden_comment' ) );
+			?>
+		</ol>
+		<?php
+			if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) :
+		?>
+		<nav id="comment-nav-below">
+			<h1 class="assistive-text"><?php esc_html_e( 'Comment navigation', 'iris-garden' ); ?></h1>
+			<div class="nav-previous"><?php previous_comments_link( __( '&larr; Older Comments', 'iris-garden' ) ); ?></div>
+			<div class="nav-next"><?php next_comments_link( __( 'Newer Comments &rarr;', 'iris-garden' ) ); ?></div>
+		</nav>
+		<?php
+			endif;
 
-</div><!-- #comments -->
+		/**
+		 * If there are no comments and comments are closed, let's leave a little note, shall we?
+		 * But we don't want the note on pages or post types that do not support comments.
+		 */
+		elseif ( ! comments_open() && ! is_page() && post_type_supports( get_post_type(), 'comments' ) ) :
+	?>
+		<h2 id="comments-title" class="nocomments"><?php esc_html_e( 'Comments are closed.', 'iris-garden' ); ?></h2>
+	<?php
+		endif;
+
+		// Show Comment Form (customized in functions.php).
+		comment_form();
+	?>
+</div><!-- /#comments -->

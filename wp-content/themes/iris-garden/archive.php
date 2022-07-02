@@ -1,51 +1,34 @@
 <?php
 /**
- * The template for displaying archive pages
- *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
- *
- * @package Iris_Garden
+ * The Template for displaying Archive pages.
  */
 
 get_header();
+
+if ( have_posts() ) :
 ?>
-
-	<main id="primary" class="site-main">
-
-		<?php if ( have_posts() ) : ?>
-
-			<header class="page-header">
-				<?php
-				the_archive_title( '<h1 class="page-title">', '</h1>' );
-				the_archive_description( '<div class="archive-description">', '</div>' );
-				?>
-			</header><!-- .page-header -->
-
-			<?php
-			/* Start the Loop */
-			while ( have_posts() ) :
-				the_post();
-
-				/*
-				 * Include the Post-Type-specific template for the content.
-				 * If you want to override this in a child theme, then include a file
-				 * called content-___.php (where ___ is the Post Type name) and that will be used instead.
-				 */
-				get_template_part( 'template-parts/content', get_post_type() );
-
-			endwhile;
-
-			the_posts_navigation();
-
-		else :
-
-			get_template_part( 'template-parts/content', 'none' );
-
-		endif;
+<header class="page-header">
+	<h1 class="page-title">
+		<?php
+			if ( is_day() ) :
+				printf( esc_html__( 'Daily Archives: %s', 'iris-garden' ), get_the_date() );
+			elseif ( is_month() ) :
+				printf( esc_html__( 'Monthly Archives: %s', 'iris-garden' ), get_the_date( _x( 'F Y', 'monthly archives date format', 'iris-garden' ) ) );
+			elseif ( is_year() ) :
+				printf( esc_html__( 'Yearly Archives: %s', 'iris-garden' ), get_the_date( _x( 'Y', 'yearly archives date format', 'iris-garden' ) ) );
+			else :
+				esc_html_e( 'Blog Archives', 'iris-garden' );
+			endif;
 		?>
-
-	</main><!-- #main -->
-
+	</h1>
+</header>
 <?php
-get_sidebar();
+	get_template_part( 'archive', 'loop' );
+else :
+	// 404.
+	get_template_part( 'content', 'none' );
+endif;
+
+wp_reset_postdata(); // End of the loop.
+
 get_footer();
