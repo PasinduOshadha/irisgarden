@@ -1,3 +1,6 @@
+
+@import './variables';
+
 #footer {
 
 
@@ -12,4 +15,9 @@
 			}
 		}
 	}
+}
+
+.footer-heading{
+    font-family: $iris-body-font !important;
+    font-weight: 400 !important;
 }

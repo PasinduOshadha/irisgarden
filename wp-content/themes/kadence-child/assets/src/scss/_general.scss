@@ -1,10 +1,48 @@
-body{
-    color: $primary-color;
+@import "./variables";
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: $iris-title-font  !important;
+    font-weight: 600;
 }
 
-.zb-menu a{
-    color: $primary-color;
-    &:hover{
-        color:red !important;
+.text-orange {
+    color: $iris-secondary-color  !important;
+}
+
+.product-showcase {
+    &::before {
+        background: url('../../img/green-leaf-2.png');
+        background-position: 0;
+        background-repeat: no-repeat;
+        background-size: contain;
+        content: "";
+        height: 15%;
+        left: -0.5%;
+        position: absolute;
+        top: 2%;
+        width: 17%;
+        z-index: 99;
+
+        
+    }
+}
+
+.rose-shear-butter {
+    &::after {
+        background: url('../../img/green-leaf.png');
+        background-position: 50%;
+        background-repeat: no-repeat;
+        background-size: contain;
+        bottom: -80px;
+        content: "";
+        height: 200px;
+        left: -120px;
+        position: absolute;
+        width: 280px;
     }
 }

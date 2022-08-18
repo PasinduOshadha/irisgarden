@@ -1,0 +1,58 @@
+// iris garden website elements customization
+@import "_variables";
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6{
+    font-family: $iris-title-font;
+    font-weight: 600;
+}
+
+.btn{
+    background: $iris-primary-gradient;
+    border-radius: 5px;
+    border: 0;
+    box-shadow: none;
+    padding-left: 30px;
+    padding-right: 30px;
+    font-family: 'New York Extra Large';
+    font-weight: 400;
+    font
+    &:active,
+    &:focus,
+    &:focus-within,
+    &:focus-visible,
+    &:active:focus{
+        box-shadow: none;
+        border: none;
+    }
+}
+
+button{
+    border-radius: 5px;
+    border: 0;
+    box-shadow: none;
+    font
+    &:active,
+    &:focus,
+    &:focus-within,
+    &:focus-visible,
+    &:active:focus{
+        box-shadow: none;
+        border: none;
+    }
+}
+
+.iris-btn{
+    font-size: 18px;
+    padding: 10px 35px;
+    transition: all 0.25s ease-in-out;
+    box-shadow: 0px 14px 27px -3px rgba(42,40,64,0.2);
+
+    &:hover{
+        box-shadow: 0px 14px 35px -3px rgba(42,40,64,0.51);
+    }
+}

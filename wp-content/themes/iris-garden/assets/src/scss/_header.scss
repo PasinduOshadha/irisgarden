@@ -2,11 +2,74 @@
 	.search-form {
 		min-width: 250px;
 	}
+
+	.navbar-nav{
+		.menu-item{
+			
+			margin: 0 20px;
+			
+			a{
+				font-family: $iris-body-font;
+				color: $iris-nav-link-color;
+				font-weight: normal;
+				font-size: 16px;
+				line-height: 25px;
+
+				&.active{
+					color: $iris-primary-color;
+				}
+			}
+		}
+		&.secondary-menu{
+			position: relative;
+			.menu-item{
+				height: 50px;
+				width: 50px;
+				position: relative;
+				margin: 0 5px;
+				a{
+					color: transparent;
+					&::before{
+						position: absolute;
+						top: 0;
+						left: 0;
+						right: 0;
+						background: red;
+						content: '';
+						height: 50px;
+						width: 50px;
+					}
+				}
+				&.user-icon{
+					a::before{
+						background: url('../../img/user-icon.svg');
+					}
+				}
+				&.search-icon{
+					a::before{
+						background: url('../../img/search-icon.svg');
+					}
+				}
+				&.cart-icon{
+					a::before{
+						background: url('../../img/cart-icon.svg');
+					}
+				}
+			}
+		}
+	}
+
+}
+
+.secondary-menu-wrapper{
+	@include media-breakpoint-down(lg){
+		display: none !important;
+	}
 }
 
 .navbar-brand {
 	img {
-		height: 40px;
+		height: 60px;
 	}
 }
 

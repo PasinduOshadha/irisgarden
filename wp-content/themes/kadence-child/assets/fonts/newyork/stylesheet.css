@@ -1,0 +1,96 @@
+@font-face {
+    font-family: 'New York';
+    src: url('NewYorkMedium-Regular.eot');
+    src: url('NewYorkMedium-Regular.eot?#iefix') format('embedded-opentype'),
+        url('NewYorkMedium-Regular.woff2') format('woff2'),
+        url('NewYorkMedium-Regular.woff') format('woff'),
+        url('NewYorkMedium-Regular.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'New York Extra Large';
+    src: url('NewYorkExtraLarge-Black.eot');
+    src: url('NewYorkExtraLarge-Black.eot?#iefix') format('embedded-opentype'),
+        url('NewYorkExtraLarge-Black.woff2') format('woff2'),
+        url('NewYorkExtraLarge-Black.woff') format('woff'),
+        url('NewYorkExtraLarge-Black.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'New York Extra Large';
+    src: url('NewYorkExtraLarge-Medium.eot');
+    src: url('NewYorkExtraLarge-Medium.eot?#iefix') format('embedded-opentype'),
+        url('NewYorkExtraLarge-Medium.woff2') format('woff2'),
+        url('NewYorkExtraLarge-Medium.woff') format('woff'),
+        url('NewYorkExtraLarge-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'New York Extra Large';
+    src: url('NewYorkExtraLarge-Semibold.eot');
+    src: url('NewYorkExtraLarge-Semibold.eot?#iefix') format('embedded-opentype'),
+        url('NewYorkExtraLarge-Semibold.woff2') format('woff2'),
+        url('NewYorkExtraLarge-Semibold.woff') format('woff'),
+        url('NewYorkExtraLarge-Semibold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'New York';
+    src: url('NewYork-RegularItalic.eot');
+    src: url('NewYork-RegularItalic.eot?#iefix') format('embedded-opentype'),
+        url('NewYork-RegularItalic.woff2') format('woff2'),
+        url('NewYork-RegularItalic.woff') format('woff'),
+        url('NewYork-RegularItalic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'New York';
+    src: url('NewYorkMedium-Black.eot');
+    src: url('NewYorkMedium-Black.eot?#iefix') format('embedded-opentype'),
+        url('NewYorkMedium-Black.woff2') format('woff2'),
+        url('NewYorkMedium-Black.woff') format('woff'),
+        url('NewYorkMedium-Black.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'New York Extra Large';
+    src: url('NewYorkExtraLarge-Regular.eot');
+    src: url('NewYorkExtraLarge-Regular.eot?#iefix') format('embedded-opentype'),
+        url('NewYorkExtraLarge-Regular.woff2') format('woff2'),
+        url('NewYorkExtraLarge-Regular.woff') format('woff'),
+        url('NewYorkExtraLarge-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'New York';
+    src: url('NewYorkMedium-Medium.eot');
+    src: url('NewYorkMedium-Medium.eot?#iefix') format('embedded-opentype'),
+        url('NewYorkMedium-Medium.woff2') format('woff2'),
+        url('NewYorkMedium-Medium.woff') format('woff'),
+        url('NewYorkMedium-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+

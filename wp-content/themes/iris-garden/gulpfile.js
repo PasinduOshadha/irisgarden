@@ -3,7 +3,7 @@ const sass = require('gulp-sass')(require('sass')); // This is different from th
 const prefix = require('autoprefixer');
 const minify = require('gulp-clean-css');
 const terser = require('gulp-terser');
-
+const rename = require('gulp-rename');
 const imagewebp = require('gulp-webp');
 const postcss = require('gulp-postcss');
 
@@ -15,7 +15,11 @@ const filesPath = {
 	js: {
 		src: './assets/src/js/',
 		dist: './assets/dist/js/',		
-	}
+	},
+  bsjs: {
+    src: './node_modules/bootstrap/dist/js/*.js',
+    dist: './assets/dist/js/bootstrap/'
+  }
 }
 
 //compile, prefix, and min scss
@@ -34,7 +38,14 @@ function compilescss() {
 function jsmin(){
   return src(filesPath.js.src + '*.js') // change to your source directory
     .pipe(terser())
+    .pipe(rename('main.bundle.js'))
     .pipe(dest(filesPath.js.dist)); // change to your final/public directory
+}
+
+// copy bootstrap JS to js dist folder
+function jscopy(){
+  return src(filesPath.bsjs.src)
+    .pipe(dest(filesPath.bsjs.dist))
 }
 
 //optimize and move images
@@ -57,7 +68,7 @@ function webpImage() {
 //watchtask
 function watchTask(){
   watch(filesPath.scss.src + '*.scss', compilescss); // change to your source directory
-  watch(filesPath.js.src + '*.js', jsmin); // change to your source directory
+  watch(filesPath.js.src + '*.js', series(jsmin, jscopy) ); // change to your source directory
   // watch('src/images/*', optimizeimg); // change to your source directory
   // watch('dist/images/*.{jpg,png}', webpImage); // change to your source directory
 }
@@ -66,6 +77,7 @@ function watchTask(){
 exports.default = series(
   compilescss,
   jsmin,
+  jscopy,
   // optimizeimg,
   // webpImage,
   watchTask

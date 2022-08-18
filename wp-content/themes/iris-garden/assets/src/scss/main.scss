@@ -108,7 +108,11 @@ $link-decoration: none;
 @import "_general";
 @import "_header";
 @import "_variables";
+@import "./woocommerce";
 
+// fonts
+@import "../../fonts/circular-std/stylesheet.css";
+@import "../../fonts/newyork/stylesheet.css";
 
 /**
  * General

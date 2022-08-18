@@ -460,6 +460,7 @@ if ( function_exists( 'register_nav_menus' ) ) {
 	register_nav_menus(
 		array(
 			'main-menu'   => 'Main Navigation Menu',
+			'secondary-menu' => "Secondary Menu",
 			'footer-menu' => 'Footer Menu',
 		)
 	);
@@ -494,6 +495,7 @@ function iris_garden_scripts_loader() {
 	}
 
 	// 2. Scripts.
+	wp_enqueue_script( 'bootstrap-min-js', get_template_directory_uri() . '/assets/dist/js/bootstrap/bootstrap.min.js', array(), $theme_version, true );
 	wp_enqueue_script( 'mainjs', get_template_directory_uri() . '/assets/dist/js/main.bundle.js', array(), $theme_version, true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
