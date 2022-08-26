@@ -1,0 +1,36 @@
+<svg width="1308" height="1425" viewBox="0 0 1308 1425" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g filter="url(#filter0_f_8_319)">
+<circle cx="181.885" cy="445.498" r="103.73" fill="#EE9D3E"/>
+</g>
+<g filter="url(#filter1_f_8_319)">
+<circle cx="546.655" cy="784.628" r="103.73" fill="#F8B6CD"/>
+</g>
+<g filter="url(#filter2_f_8_319)">
+<circle cx="365.655" cy="704.236" r="103.73" fill="#F8B6CD"/>
+</g>
+<g filter="url(#filter3_f_8_319)">
+<circle cx="754.115" cy="870.628" r="103.73" fill="#FEBE22"/>
+</g>
+<defs>
+<filter id="filter0_f_8_319" x="-371.845" y="-108.232" width="1107.46" height="1107.46" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="225" result="effect1_foregroundBlur_8_319"/>
+</filter>
+<filter id="filter1_f_8_319" x="-7.07446" y="230.898" width="1107.46" height="1107.46" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="225" result="effect1_foregroundBlur_8_319"/>
+</filter>
+<filter id="filter2_f_8_319" x="-188.074" y="150.506" width="1107.46" height="1107.46" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="225" result="effect1_foregroundBlur_8_319"/>
+</filter>
+<filter id="filter3_f_8_319" x="200.385" y="316.898" width="1107.46" height="1107.46" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="225" result="effect1_foregroundBlur_8_319"/>
+</filter>
+</defs>
+</svg>

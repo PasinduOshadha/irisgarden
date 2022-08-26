@@ -1,29 +1,61 @@
-.home_mini_cart{
+.home_mini_cart {
     display: flex;
     margin-top: 10px !important;
-    
-    .home_quantity{
+
+    .home_quantity {
         width: 110px;
-        margin-right: 15px; 
-        
-        input[type=number]::-webkit-inner-spin-button{
+        margin-right: 15px;
+
+        input[type=number]::-webkit-inner-spin-button {
             opacity: 1;
         }
     }
-    
-    .single_add_to_cart_button{
+
+    .single_add_to_cart_button {
         background: #1a202c;
     }
 }
 
-.home-best-seller-area{
-    &::before{
-        position: absolute;
-        content: '';
-        width: 100%;
-        height: 470px;
-        left: 0;
-        bottom: 0;
-        background-color: #F7F1EA;
+
+
+.woocommerce {
+    &-page {
+        .button {
+            background: $iris-primary-gradient  !important;
+            font-family: 'New York Extra Large';
+            font-weight: 400;
+        }
+
+        .woo-archive-btn-button .button {
+            width: 170px !important;
+            margin-left: auto;
+            margin-right: auto;
+            -webkit-box-shadow: 0 10px 50px -12px #2A2840!important;
+            -moz-box-shadow: 0 10px 50px -12px #2A2840!important;
+            box-shadow: 0 10px 50px -12px #2A2840!important;
+            transition: all 0.15s ease-in-out !important;
+
+            &:hover{
+                transform: translateY(-5px);
+            }
+        }
+
+        .product-archive {
+            .product-details {
+                .product-action-wrap{
+                    margin-bottom: 3em;
+                }
+                .woocommerce-loop-product__title {
+                    text-align: center;
+                }
+
+                .price {
+                    text-align: center;
+                    font-family: $iris-body-font;
+                    font-size: 18px !important;
+                    letter-spacing: 1px;
+                }
+            }
+        }
     }
 }
