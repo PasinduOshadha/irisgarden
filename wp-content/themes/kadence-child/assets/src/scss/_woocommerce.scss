@@ -58,4 +58,24 @@
             }
         }
     }
+
+    &.single-product{
+        div.product{
+            div.images{
+                width: 37%;
+                max-width: 400px;
+            }
+            div.summary{
+                width: 60%;
+
+                .product_title{
+                    font-family: $iris-title-font;
+                    font-weight: 500;
+                    font-size: 50px;
+                    line-height: 60px;
+                }
+            }
+        }
+    }
 }
+

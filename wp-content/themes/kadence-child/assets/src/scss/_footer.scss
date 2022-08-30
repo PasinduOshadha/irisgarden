@@ -1,0 +1,23 @@
+footer{
+    &::before{
+        background: url('../../img/footer-leaf.png');
+        background-position: right;
+        background-repeat: no-repeat;
+        background-size: contain;
+        top: -15vh;
+        content: "";
+        position: absolute;
+        right: 0;
+        width: 550px;
+        z-index:2;
+        min-height: 200px;
+    }
+}
+
+.home{
+    footer{
+        &::before{
+            display: none;
+        }
+    }
+}

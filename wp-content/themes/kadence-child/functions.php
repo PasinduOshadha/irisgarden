@@ -1,4 +1,12 @@
 <?php
+
+/**
+ * woocommerce customization
+ */
+
+ require_once 'inc/woo-customize.php';
+
+ 
 /**
  * Enqueue child styles.
  */
