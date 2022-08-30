@@ -1,0 +1,90 @@
+.text-hightlight-orange {
+    color: $iris-secondary-color;
+}
+
+// frontpage css
+.home .cover {
+    height: 100vh;
+
+    .col-md-6 {
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-content: flex-start;
+        justify-content: center;
+        align-items: flex-start;
+
+        &:first-child {
+            padding-right: 25px;
+            position: relative;
+            &::before{
+                position: absolute;
+                height: 150%;
+                width: 150%;
+                top: 0;
+                left: -50%;
+                content: '';
+                background: url('../../img/cover-blur-bg.svg');
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center;
+                z-index: -1;
+            }
+        }
+
+        h1 {
+            font-size: 50px;
+            font-family: $iris-title-font;
+        }
+
+        h3 {
+            font-size: 30px;
+            font-family: $iris-body-font;
+            max-width: 360px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 35px;
+        }
+    }
+}
+
+.home .our-products{
+    h2{
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        font-size: 50px;
+    }
+
+    p{
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        font-family: $iris-body-font;
+        font-weight: 300;
+        line-height: 25px;
+    }
+
+    .col-md-3{
+        text-align: center;
+        
+        h4{
+            width: 100%;
+            font-size: 20px;
+            color: $iris-primary-color;
+        }
+
+        .small-text{
+            font-size: 15px;
+            font-family: $iris-body-font;
+            font-weight: 300;
+            color: #6A6A6A;
+            font-style: normal;
+            margin-top: 10px;
+        }
+        
+        .home-product-price{
+            font-weight: 500;
+            margin-top: 10px;
+        }
+    }
+}

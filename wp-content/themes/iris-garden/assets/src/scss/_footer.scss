@@ -1,0 +1,23 @@
+
+@import './variables';
+
+#footer {
+
+
+	p {
+		margin-top: 10px;
+	}
+
+	.menu-item {
+		a {
+			&[aria-current='page'] {
+				color: $link-hover-color;
+			}
+		}
+	}
+}
+
+.footer-heading{
+    font-family: $iris-body-font !important;
+    font-weight: 400 !important;
+}

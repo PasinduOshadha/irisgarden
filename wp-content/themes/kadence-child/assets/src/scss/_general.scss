@@ -1,10 +1,303 @@
-body{
-    color: $primary-color;
+@import "./variables";
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: $iris-title-font  !important;
+    font-weight: 600;
 }
 
-.zb-menu a{
-    color: $primary-color;
-    &:hover{
-        color:red !important;
+.text-orange {
+    color: $iris-secondary-color  !important;
+}
+
+.iris-button {
+    min-width: 150px;
+    justify-content: center;
+    background: $iris-primary-gradient  !important;
+}
+
+.button-shadow {
+    -webkit-box-shadow: 0 10px 50px -12px #2A2840 !important;
+    -moz-box-shadow: 0 10px 50px -12px #2A2840 !important;
+    box-shadow: 0 10px 50px -12px #2A2840 !important;
+    transition: all 0.15s ease-in-out !important;
+}
+
+.cover-section {
+    &--wrapper {
+        &::before {
+            content: '';
+            position: absolute;
+            height: 60vh;
+            width: 50vw;
+            background: url('../../img/cover-blured-bg.svg');
+            background-size: contain;
+            background-position: center left;
+            background-repeat: no-repeat;
+            top: 0;
+            left: 0;
+        }
+    }
+}
+
+.product-showcase {
+    &::before {
+        background: url('../../img/green-leaf-2.png');
+        background-position: 0;
+        background-repeat: no-repeat;
+        background-size: contain;
+        content: "";
+        height: 15%;
+        left: -0.5%;
+        position: absolute;
+        top: 2%;
+        width: 10vw;
+
+        @media (max-width: $mobile) {
+            display: none;
+        }
+    }
+
+    &::after {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        background: #E3F3FF;
+        height: 1700px;
+        width: 100%;
+        content: '';
+        z-index: -1;
+
+        @media (max-width: $mobile) {
+            height: 400px;
+        }
+    }
+
+    .zb-section__innerWrapper::after {
+        background: url('../../img/green-leaf-home-2.png');
+        background-position: 50%;
+        background-repeat: no-repeat;
+        background-size: contain;
+        bottom: -1px;
+        content: "";
+        position: absolute;
+        right: -2vw;
+        width: 550px;
+        z-index: 99;
+        min-height: 350px;
+
+        @media (max-width: $mobile) {
+            background: url('../../img/green-leaf.png');
+            right: 0;
+            bottom: -140px;
+            background-repeat: no-repeat;
+            background-position: -220% 50%;
+            background-size: 110%;
+            width: 150px;
+            height: 150px;
+            min-height: fit-content;
+        }
+
+    }
+}
+
+
+.customer-review-section-img {
+    &::after {
+        background: url('../../img/green-leaf.png');
+        background-position: 50%;
+        background-repeat: no-repeat;
+        background-size: contain;
+        bottom: -80px;
+        content: "";
+        height: 200px;
+        left: -120px;
+        position: absolute;
+        width: 280px;
+
+        @media (max-width: $mobile) {
+            bottom: -40px;
+            height: 120px;
+            width: 120px;
+            left: -25px;
+        }
+    }
+}
+
+.home-best-seller-area {
+    &::before {
+        position: absolute;
+        content: '';
+        width: 100%;
+        height: 470px;
+        left: 0;
+        bottom: 0;
+        background-color: #F7F1EA;
+
+        @media (max-width: $mobile) {
+            bottom: -60px;
+            height: 100%;
+        }
+    }
+}
+
+.iris-accordion {
+    .zb-el {
+        &-accordions-accordionTitle {
+            font-family: 'Circular Std Book';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 22px;
+            line-height: 28px;
+            color: #000;
+
+            @media (max-width: $mobile) {
+                font-size: 16px;
+                line-height: 20px;
+            }
+        }
+    }
+}
+
+.zb-el-accordionItem.zb-el-accordions--active {
+    .zb-el-accordions-accordionIcon {
+        &::before {
+            // content: '';
+            font-size: 25px;
+            color: transparent;
+            background: url('../../img/accordion-active.svg');
+            background-size: contain;
+            background-position: center center;
+            background-repeat: no-repeat;
+        }
+    }
+}
+
+.zb-el-accordionItem {
+    .zb-el-accordions-accordionIcon {
+        &::before {
+            font-size: 25px;
+            color: transparent;
+            background: url('../../img/accordion-idle.svg');
+            background-size: 100%;
+            background-position: center center;
+            background-repeat: no-repeat;
+        }
+    }
+}
+
+.contant-us-content {
+    box-shadow: 0px 30px 142px -99px rgba(0, 0, 0, 0.55);
+
+    @media (max-width: $mobile) {
+        box-shadow: none;
+    }
+}
+
+.left-leaf {
+    &::before {
+        background: url('../../img/colombo-reseller-1-croped.png');
+        background-position: left;
+        background-repeat: no-repeat;
+        background-size: contain;
+        bottom: -1px;
+        content: "";
+        position: absolute;
+        left: -2vw;
+        width: 550px;
+        z-index: -1;
+        min-height: 450px;
+    }
+}
+
+.right-leaf {
+    &::after {
+        background: url('../../img/right-leaf-1.png');
+        background-position: right;
+        background-repeat: no-repeat;
+        background-size: contain;
+        top: 15vh;
+        content: "";
+        position: absolute;
+        right: 0;
+        width: 550px;
+        z-index: -1;
+        min-height: 400px;
+    }
+}
+
+.kandy-right-leaf {
+    &::after {
+        background: url('../../img/right-leaf-2.png');
+        background-position: right;
+        background-repeat: no-repeat;
+        background-size: contain;
+        top: -15vh;
+        content: "";
+        position: absolute;
+        right: 0;
+        width: 550px;
+        z-index: -1;
+        min-height: 400px;
+    }
+}
+
+.keels-left-leaf {
+    &::before {
+        background: url('../../img/left-leaf-2.png');
+        background-position: left;
+        background-repeat: no-repeat;
+        background-size: contain;
+        top: 0;
+        content: "";
+        position: absolute;
+        left: -2vw;
+        width: 550px;
+        z-index: -1;
+        min-height: 350px;
+    }
+}
+
+.contact-page-right-leaf {
+    &::after {
+        background: url('../../img/right-leaf-1.png');
+        background-position: right;
+        background-repeat: no-repeat;
+        background-size: contain;
+        bottom: -80px;
+        content: "";
+        position: absolute;
+        right: 0;
+        width: 550px;
+        z-index: -1;
+        min-height: 350px;
+
+        @media (max-width: $mobile) {
+            display: none;
+        }
+    }
+}
+
+.contact-page-left-leaf {
+    &::before {
+        background: url('../../img/colombo-reseller-1-croped.png');
+        background-position: left;
+        background-repeat: no-repeat;
+        background-size: contain;
+        top: -25vh;
+        content: "";
+        position: absolute;
+        left: -2vw;
+        width: 550px;
+        z-index: -1;
+        min-height: 400px;
+
+        @media (max-width: $mobile) {
+            display: none;
+        }
     }
 }

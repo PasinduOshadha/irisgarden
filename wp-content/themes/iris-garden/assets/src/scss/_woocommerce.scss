@@ -1,0 +1,17 @@
+.home_mini_cart{
+    display: flex;
+    margin-top: 10px !important;
+    
+    .home_quantity{
+        width: 110px;
+        margin-right: 15px; 
+        
+        input[type=number]::-webkit-inner-spin-button{
+            opacity: 1;
+        }
+    }
+    
+    .single_add_to_cart_button{
+        background: #1a202c;
+    }
+}
